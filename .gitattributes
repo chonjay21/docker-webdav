@@ -1,0 +1,11 @@
+# perform LF normalization
+* text eol=lf
+
+# Denote all files that are truly binary and should not be modified.
+*.png binary
+*.jpg binary
+*.gif binary
+*.jpeg binary
+*.bmp binary
+*.zip binary
+*.7z binaryv
