@@ -1,5 +1,8 @@
 FROM arm32v7/httpd:latest
 
+# for Dockerhub multiarch armhf build
+COPY qemu-arm-static /usr/bin/
+
 # Labels
 LABEL Description "Our goal is to create a simple, consistent, customizable and convenient image using official image" \
 	  maintainer "https://github.com/chonjay21"
