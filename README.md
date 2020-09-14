@@ -5,6 +5,7 @@
 * Support URL prefix for reverse proxy
 * Support umask change
 * Support UserID|GroupID change
+* Support custom TimeZone
 * Support custom event script override
 
 <br />
