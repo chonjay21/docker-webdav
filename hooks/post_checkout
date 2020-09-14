@@ -1,5 +1,12 @@
 #!/bin/bash
 
+API="https://api.github.com/repos/estesp/manifest-tool/tags"
+URL="https://github.com/estesp/manifest-tool/releases/download"
+TAG=$(curl -Ls $API | awk -F'"' '/name.*v[0-9]/ {print $4; exit}')
+curl -LSso manifest-tool "${URL}/${TAG}/manifest-tool-linux-amd64"
+chmod +x manifest-tool
+
+
 BUILD_ARCH=$(echo "${DOCKERFILE_PATH}" | cut -d '.' -f 2)
 
 [ "${BUILD_ARCH}" == "Dockerfile" ] && \

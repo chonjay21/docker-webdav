@@ -1,0 +1,6 @@
+#!/bin/bash
+
+# For create the manifest(experimental)
+# docker manifest command is not available on Docker Hub yet .
+
+./manifest-tool push from-spec manifest.yml --ignore-missing
