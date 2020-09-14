@@ -1,4 +1,10 @@
 # [**WebDav**](https://github.com/chonjay21/docker-webdav)
+![Docker Cloud Automated build](https://img.shields.io/docker/cloud/automated/chonjay21/webdav)
+![Docker Cloud Build Status](https://img.shields.io/docker/cloud/build/chonjay21/webdav)
+![Docker Pulls](https://img.shields.io/docker/pulls/chonjay21/webdav)
+![GitHub](https://img.shields.io/github/license/chonjay21/docker-webdav)
+![Docker Stars](https://img.shields.io/docker/stars/chonjay21/webdav?style=social)
+![GitHub stars](https://img.shields.io/github/stars/chonjay21/docker-webdav?style=social)
 ## WebDav based on official latest httpd image
 * Support Authentication (BasicAuth|DigestAuth)
 * Support SSL(https) with automatically generated self signed certificate
