@@ -48,6 +48,7 @@ docker run \
   -e APP_UID=1000	\
   -e APP_GID=1000	\
   -e APP_UMASK=007                                                `#optional`	\
+  -e TZ=America/Los_Angeles                                       `#optional` \
   -e USE_SSL=true                                                 `#optional`	\
   -e FORCE_REINIT_CONFIG=false                                    `#optional` \
   -e SERVER_NAME=WebDav.example.org                               `#optional` \
@@ -59,8 +60,6 @@ docker run \
   -v /webdav/config:/webdav/config                                `#optional for persistent data` \
   -v /webdav/server.key:/usr/local/apache2/conf/server.key:ro     `#optional for ssl` \
   -v /webdav/server.crt:/usr/local/apache2/conf/server.crt:ro     `#optional for ssl` \
-  -v /etc/localtime:/etc/localtime:ro                             `#optional for timezone` \
-  -v /etc/timezone:/etc/timezone:ro                               `#optional for timezone` \
   chonjay21/webdav
 ```
 
@@ -84,6 +83,7 @@ services:
       - APP_UID=1000
       - APP_GID=1000
       - APP_UMASK=007                                                 #optional
+      - TZ=America/Los_Angeles                                        #optional
       - USE_SSL=true                                                  #optional
       - FORCE_REINIT_CONFIG=false                                     #optional
       - SERVER_NAME=WebDav.example.org                                #optional
@@ -94,8 +94,6 @@ services:
       - /webdav/config:/webdav/config                                 #optional
       - /webdav/server.key:/usr/local/apache2/conf/server.key:ro      #optional
       - /webdav/server.crt:/usr/local/apache2/conf/server.crt:ro      #optional
-      - /etc/localtime:/etc/localtime:ro                              #optional
-      - /etc/timezone:/etc/timezone:ro                                #optional
 ```
 
 # Parameters
@@ -109,6 +107,7 @@ services:
 | `-e APP_UID=1000` | for filesystem permission (userid)  |  |
 | `-e APP_GID=1000` | for filesystem permission (groupid)  |  |
 | `-e APP_UMASK=007` | for filesystem file permission umask (default 007)  | O |
+| `-e TZ=America/Los_Angeles` | for timezone  | O |
 | `-e USE_SSL=true` | for ssl encryption(https) with automatically created self signed certificate  | O |
 | `-e FORCE_REINIT_CONFIG=false` | if true, always reinitialize APP_USER_NAME etc ...  | O |
 | `-e SERVER_NAME=WebDav.example.org` | for apache servername field  | O |
@@ -118,8 +117,6 @@ services:
 | `-v /webdav/config` | for persistent data | O |
 | `-v /usr/local/apache2/conf/server.key` | for custom ssl certificate | O |
 | `-v /usr/local/apache2/conf/server.crt` | for custom ssl certificate | O |
-| `-v /etc/localtime` | for time sync with host system (only for debian based host OS) | O |
-| `-v /etc/timezone` | for time sync with host system (only for debian based host OS) | O |
 
 <br />
 

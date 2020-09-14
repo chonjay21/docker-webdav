@@ -1,0 +1,23 @@
+version: '2.2'
+services:
+  webdav:
+    container_name: webdav
+    build: .
+    image: "chonjay21/webdav:latest"
+    ports:
+      - 80:80
+      - 443:443
+    environment:
+      - FORCE_REINIT_CONFIG=false
+      - APP_UID=1000
+      - APP_GID=1000
+      - APP_UMASK=007
+      - APP_USER_NAME=admin
+      - APP_USER_PASSWD=admin
+      - USE_SSL=true
+      - SERVER_NAME=WebDav.example.org
+      - TZ=America/Los_Angeles
+      #- DIGEST_AUTH_REALM=WebDav
+      #- URL_PREFIX=/webdav
+    volumes:
+      - /webdav/data:/var/webdav/data
