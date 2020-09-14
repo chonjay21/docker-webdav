@@ -9,11 +9,3 @@ manifests:
       architecture: arm
       os: linux
       variant: v7
-
-image: chonjay21/webdav:arm32v7-latest
-manifests:
-  - image: chonjay21/webdav:arm32v7
-    platform:
-      architecture: arm
-      os: linux
-      variant: v7
