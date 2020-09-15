@@ -68,6 +68,7 @@ if [ -z "$(ls -A $WEBDAV_USER_CONFIG_DIR)" ] || [ "$FORCE_REINIT_CONFIG" = true 
 		if [ "$USE_SSL" = true ]; then
 			echo "" >> $APACHE_CONFIG_PATH/httpd.conf
 			echo "Include conf/extra/httpd-ssl.conf" >> $APACHE_CONFIG_PATH/httpd.conf
+			sed -i "s|ServerName .*|ServerName $SERVER_NAME|g" /usr/local/apache2/conf/extra/httpd-ssl.conf
 		fi
 	echo "[] Done."
 	
