@@ -4,7 +4,7 @@ services:
     container_name: webdav-arm64v8
     build:
       context: .
-      dockerfile: Dockerfile.arm64
+      dockerfile: Dockerfile.aarch64
     image: "chonjay21/webdav:arm64v8-latest"
     ports:
       - 80:80
