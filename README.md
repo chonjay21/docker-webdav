@@ -6,6 +6,7 @@
 ![Docker Stars](https://img.shields.io/docker/stars/chonjay21/webdav?style=social)
 ![GitHub stars](https://img.shields.io/github/stars/chonjay21/docker-webdav?style=social)
 ## WebDav based on official latest httpd image
+* Support Multiple architectures
 * Support Authentication (BasicAuth|DigestAuth)
 * Support SSL(https) with automatically generated self signed certificate
 * Support URL prefix for reverse proxy
@@ -33,6 +34,7 @@ The architectures supported by this image are:
 | :----: | --- |
 | x86-64 | amd64, latest |
 | armhf | arm32v7, latest |
+| arm64 | arm64v8, latest |
 
 <br />
 
@@ -161,6 +163,16 @@ docker run \
 ```
 FROM chonjay21/webdav:latest
 ADD host/on_pre_init.sh /sources/webdav/
+```
+
+# Logs to file
+* If you want to httpd logs to file for fail2ban etc, you can use docker command with redirect in this manner.
+* The official httpd driver changes the httpd application’s configuration to write its normal output directly to /proc/self/fd/1 (which is STDOUT) and its errors to /proc/self/fd/2 (which is STDERR)
+```
+docker logs -f webdav >> testoutput.log 2>&1 &
+```
+```
+docker logs -f webdav |tee -a access.log &
 ```
 
 <br />

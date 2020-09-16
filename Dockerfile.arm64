@@ -1,0 +1,38 @@
+FROM arm64v8/httpd:latest
+
+# for Dockerhub multiarch armhf build
+COPY qemu-aarch64-static /usr/bin/
+
+# Labels
+LABEL Description "Our goal is to create a simple, consistent, customizable and convenient image using official image" \
+	  maintainer "https://github.com/chonjay21"
+
+# Environment variables
+ENV WEBDAV_SOURCE_DIR=/sources/webdav \
+	WEBDAV_USER_CONFIG_DIR=/webdav/config \
+	WEBDAV_CONFIG_PATH=/etc/apache2/sites-available \
+	APACHE_CONFIG_PATH=/usr/local/apache2/conf \
+	APACHE_RUN_USER=www-data
+
+RUN apt-get update -y && apt-get install --no-install-recommends -y \
+	curl \
+	tzdata \
+	openssl
+
+# creating self signed certificate
+RUN openssl req -x509 -nodes -days 36500 -newkey rsa:2048 -subj "/C=US/ST=Docker/L=Docker/O=httpd/CN=*" -keyout /usr/local/apache2/conf/server.key -out /usr/local/apache2/conf/server.crt; \
+	chmod 644 /usr/local/apache2/conf/server.key; \
+	chmod 644 /usr/local/apache2/conf/server.crt; \
+	apt-get -y purge openssl; \
+	rm -rf /var/lib/apt/lists/*
+
+# creating initial config dir
+RUN	mkdir -p $WEBDAV_USER_CONFIG_DIR
+
+COPY --chown=$APACHE_RUN_USER:$APACHE_RUN_USER sources/ $WEBDAV_SOURCE_DIR/
+
+# set permission
+RUN chmod 770 $WEBDAV_SOURCE_DIR/*.sh; \
+	chmod 770 $WEBDAV_SOURCE_DIR/eventscripts/*.sh
+
+ENTRYPOINT $WEBDAV_SOURCE_DIR/entrypoint.sh
