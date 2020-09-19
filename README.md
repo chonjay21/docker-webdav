@@ -169,10 +169,10 @@ ADD host/on_pre_init.sh /sources/webdav/
 * If you want to httpd logs to file for fail2ban etc, you can use docker command with redirect in this manner.
 * The official httpd driver changes the httpd application’s configuration to write its normal output directly to /proc/self/fd/1 (which is STDOUT) and its errors to /proc/self/fd/2 (which is STDERR)
 ```
-docker logs -f webdav >> access.log 2>&1 &
+docker logs --timestamps -f webdav >> access.log 2>&1 &
 ```
 ```
-docker logs -f webdav |tee -a access.log &
+docker logs --timestamps -f webdav |tee -a access.log &
 ```
 
 <br />
