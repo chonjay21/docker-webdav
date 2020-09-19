@@ -33,6 +33,7 @@ COPY --chown=$APACHE_RUN_USER:$APACHE_RUN_USER sources/ $WEBDAV_SOURCE_DIR/
 
 # set permission
 RUN chmod 770 $WEBDAV_SOURCE_DIR/*.sh; \
-	chmod 770 $WEBDAV_SOURCE_DIR/eventscripts/*.sh
+	chmod 770 $WEBDAV_SOURCE_DIR/eventscripts/*.sh; \
+	mkdir -p /var/webdav/data
 
 ENTRYPOINT $WEBDAV_SOURCE_DIR/entrypoint.sh
