@@ -79,8 +79,9 @@ if [ -z "$(ls -A $WEBDAV_USER_CONFIG_DIR)" ] || [ "$FORCE_REINIT_CONFIG" = true 
 		chmod 660 $WEBDAV_CONFIG_PATH/webdav.conf
 		chown -R $APACHE_RUN_USER:$APACHE_RUN_USER $WEBDAV_USER_CONFIG_DIR
 		chmod -R 770 $WEBDAV_USER_CONFIG_DIR
+		chown -R $APACHE_RUN_USER:$APACHE_RUN_USER /var/webdav/
+		chown -R $APACHE_RUN_USER:$APACHE_RUN_USER /var/webdav/data || true
 	echo "[] Done."
-	
 	
 	echo "[] Running on_post_init.sh ..."
 		. $WEBDAV_SOURCE_DIR/eventscripts/on_post_init.sh || true
