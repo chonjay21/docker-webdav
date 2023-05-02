@@ -79,6 +79,8 @@ if [ -z "$(ls -A $WEBDAV_USER_CONFIG_DIR)" ] || [ "$FORCE_REINIT_CONFIG" = true 
 		chmod 660 $WEBDAV_CONFIG_PATH/webdav.conf
 		chown -R $APACHE_RUN_USER:$APACHE_RUN_USER $WEBDAV_USER_CONFIG_DIR
 		chmod -R 770 $WEBDAV_USER_CONFIG_DIR
+		chown -R $APACHE_RUN_USER:$APACHE_RUN_USER /var/webdav/
+		chmod -R 770 /var/webdav/
 	echo "[] Done."
 	
 	
